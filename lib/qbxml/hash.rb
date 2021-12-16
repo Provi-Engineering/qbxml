@@ -145,7 +145,13 @@ private
   def self.typecast(schema, xpath, value, typecast_cache)
     type_path = xpath.gsub(/\[\d+\]/,'')
     # This is fairly expensive. Cache it for better performance when parsing lots of records of the same type.
-    type_proc = typecast_cache[type_path] ||= Qbxml::TYPE_MAP[schema.xpath(type_path).first.try(:text)]
+    unless (type_proc = typecast_cache[type_path])
+      # hack to work around the QB xmlops reporting certain paths with lowercase "is" while QB actually sends caps
+      # unsure atm if there are instances of the lowercase key or if the xmlops is incorrect (or if the keys are
+      # intended to be case insensitive entirely)
+      typeval = schema.xpath(type_path).first || schema.xpath(type_path.sub(/\/Is/, '/is')).first
+      type_proc = typecast_cache[type_path] = Qbxml::TYPE_MAP[typeval.try(:text)]
+    end
     raise "#{xpath} is not a valid type" unless type_proc
     type_proc[value]
   end
