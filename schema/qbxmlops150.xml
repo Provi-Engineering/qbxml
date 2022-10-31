@@ -13539,6 +13539,7 @@
           <isTrackingOnPurchaseTransactionsEnabled>BOOLTYPE</isTrackingOnPurchaseTransactionsEnabled> <!-- opt, not in QBAU -->
           <isTrackingOnInventoryAdjustmentEnabled>BOOLTYPE</isTrackingOnInventoryAdjustmentEnabled> <!-- opt, not in QBAU -->
           <isTrackingOnBuildAssemblyEnabled>BOOLTYPE</isTrackingOnBuildAssemblyEnabled> <!-- opt, not in QBAU -->
+          <IsInventoryExpirationDateEnabled>BOOLTYPE</IsInventoryExpirationDateEnabled> <!-- custom add, not present in SDK -->
           <FIFOEnabled>BOOLTYPE</FIFOEnabled>               <!-- opt, not in QBAU -->
           <FIFOEffectiveDate>DATETYPE</FIFOEffectiveDate>   <!-- opt, not in QBAU -->
           <IsRSBEnabled>BOOLTYPE</IsRSBEnabled>             <!-- opt, v12.0 -->
